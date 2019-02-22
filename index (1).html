@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Calculadora</title>
+
+	<!-- CSS Bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	
+
+
+	<style type="text/css">
+		body {text-align: center;}
+		.global{background-color: #a7ebe3;}
+		button {width: 100%}
+		.text {
+			width: 50%;
+			height: 3em;
+		}
+		p {
+			background-color: white;
+			align-items: center;
+		}
+		
+	</style>
+
+</head>
+<body>
+	<div class="global text-center mb-3" id="calculadora">
+
+		<div class="row py-4">
+			
+			<div class="col-12 pantalla" align="center">
+				<p align="center" id="pantalla" class="text" type="text" value="0" name="result" readonly="true">0</p>
+			</div>	
+		</div>
+
+
+
+		<div class="row mt-3">
+			<div class="col">
+				
+			</div>
+			<div class="col-6">
+				<ul class="nav-item dropdown btn-lg btn-secondary">
+				<a class="nav-link dropdown-toggle bg-dark" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Modo Avanzado</a>
+			    <div class="dropdown-menu">
+			      <a class="dropdown-item" href="#">Conversión Moneda</a>
+			      <a class="dropdown-item" href="#">Conversion Bin y Hex</a>
+			      <a class="dropdown-item" href="#">Modo Básico</a>
+			    </div>
+			 </ul>
+			</div>
+			
+			<div class="col-5">
+				<button  type="button" id="borrarT" class="btn btn-secondary btn-lg" name="borrar" value="ce" onclick="borrarTodo()">CE</button>
+			</div>
+			
+		</div>
+
+
+		<div class="row mt-3">
+			<div class="col">
+				<button type="button" id="1" class="btn btn-lg btn-secondary " name="1" value="1" onclick="mostrarNumero('1')">1</button>
+			</div>
+			<div class="col">
+				<button type="button" id="2" class="btn btn-lg btn-secondary" name="2" value="2" onclick="mostrarNumero('2')">2</button>
+			</div>
+			<div class="col">
+				<button type="button" id="3" class="btn btn-lg btn-secondary" name="3" value="3" onclick="mostrarNumero('3')">3</button>
+			</div>
+			<div class="col">
+				<button type="button" id="suma" class="btn btn-lg btn-secondary" name="suma" value="+" onclick="calcular('+')">+</button>
+			</div>
+			<div class="col">
+				<button type="button" id="resta" class="btn btn-lg btn-secondary" name="resta" value="-" onclick="calcular('-')">-</button>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col">
+				<button type="button" id="4" class="btn btn-lg btn-secondary" name="4" value="4" onclick="mostrarNumero('4')">4</button>
+			</div>
+			<div class="col">
+				<button type="button" id="5" class="btn btn-lg btn-secondary" name="5" value="5" onclick="mostrarNumero('5')">5</button>
+			</div>
+			<div class="col">
+				<button type="button" id="6" class="btn btn-lg btn-secondary" name="6" value="6" onclick="mostrarNumero('6')">6</button>
+			</div>
+			<div class="col">
+				<button type="button" id="multiplicacion" class="btn btn-lg btn-secondary" name="multiplica" value="*" onclick="calcular('*')">*</button>
+			</div>
+			<div class="col">
+				<button type="button" id="division" class="btn btn-lg btn-secondary" name="divide" value="/" onclick="calcular('/')">/</button>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col">
+				<button type="button" id="7" class="btn btn-lg btn-secondary" name="7" value="7" onclick="mostrarNumero('7')">7</button>
+			</div>
+			<div class="col">
+				<button type="button" id="8" class="btn btn-lg btn-secondary" name="8" value="8"  onclick="mostrarNumero('8')">8</button>
+			</div>
+			<div class="col">
+				<button type="button" id="9" class="btn btn-lg btn-secondary" name="9" value="9" onclick="mostrarNumero('9')">9</button>
+			</div>
+			<div class="col">
+				<button type="button" id="raiz" class="btn btn-lg btn-secondary" name="raiz" value="raiz" onclick="raiz()">√</button>
+				<!--input style="width: 100%; height: 100%" id="binario" readonly="true" type="text" name="binario" placeholder="Binario"-->
+			</div>
+			<div class="col">
+				<button type="button" id="porcentaje" class="btn btn-lg btn-secondary" name="porcentaje" value="porcentaje" onclick="porcentaje()">%</button>
+				<!--input style="width: 100%; height: 100%" id="hexadecimal" readonly="true" type="text" name="hexadecimal" placeholder="Hexadecimal"-->
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col">
+				<button type="button" id="coma" class="btn btn-lg btn-secondary" name="coma" value="," onclick="mostrarNumero('.')">,</button>
+			</div>
+			<div class="col">
+				<button type="button" id="0" class="btn btn-lg btn-secondary" name="0" value="0" onclick="mostrarNumero('0')">0</button>
+			</div>
+			<div class="col">
+				<button type="button" id="borrar" class="btn btn-lg btn-secondary" name="retroceso" onclick="retroceso()"><</button>
+			</div>
+			<div class="col">
+				<input style="width: 100%; height: 100%" id="dolar" readonly="true" type="text" name="dolar" placeholder="Dólar ($)">
+			</div>
+			<div class="col">
+				<input style="width: 100%; height: 100%" id="libra" readonly="true" type="text" name="libra" placeholder="Libra (£)">
+			</div>
+		</div>
+
+		<div class="row mt-3 pb-3">
+			<div class="col">
+				
+			</div>
+			<div class="col">
+				<button type="button" id="igual" class="btn btn-lg btn-secondary" value="=" name="igual" onclick="igualar()">=</button>
+			</div>
+			<div class="col"">
+				<input style="width: 100%; height: 100%" id="euro"  type="text" name="euros" placeholder="Euros (€) ">
+			</div>
+			<div class="col">
+				<input style="width: 100%; height: 100%" id="yen" readonly="true" type="text" name="yen" placeholder="Yen (¥)">
+			</div>
+			<div class="col">
+				<input style="width: 100%; height: 100%" id="peso" readonly="true" type="text" name="peso" placeholder="Peso ($)">
+			</div>	
+		</div>
+	</div>
+	
+
+
+<!--script type="text/javascript">
+	var calculadora = document.getElementById("calculadora");
+var pantalla = document.getElementById("pantalla");
+
+function mostrarmostrarNumero (val) {
+	pantalla.value = val;
+}
+
+console.log(calculadora);
+
+calculadora.addEventListener("click", function(ev){
+	
+
+	mostrarmostrarNumero(ev.target.value);
+});
+
+</script-->
+
+
+	<!-- JS Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<!-- JavaScript -->
+	<script type="text/javascript" src="./main.js"></script>
+</body>
+</html>
